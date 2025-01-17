@@ -38,13 +38,17 @@ jobs:  # Telling what jobs we need to happen
       - name: Build APK
         run: flutter build apk --release
 
+      #5.1 Compress APK
+      - name: Compress APK
+        run: zip -j build/app/outputs/flutter-apk/app-release.zipx build/app/outputs/flutter-apk/app-release.apk
+
       #6 Upload APK
       - name: Upload APK 
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: |
-            build/app/outputs/flutter-apk/app-release.apk
+            build/app/outputs/flutter-apk/app-release.zipx
 
       #7 Send Email
       - name: Send Email
@@ -59,4 +63,4 @@ jobs:  # Telling what jobs we need to happen
               ${{ github.server_url }}/${{ github.repository }}/suites/${{ github.run_id }}/artifacts/${{ steps.upload-apk.outputs.artifact_id }}
           to: foxahmed71@gmail.com
           from: ahmed.alsabonabi@gmail.com
-          attachments: build/app/outputs/flutter-apk/app-release.apk
+          attachments: build/app/outputs/flutter-apk/app-release.zipx
