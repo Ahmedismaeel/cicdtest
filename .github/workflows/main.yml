@@ -38,17 +38,14 @@ jobs:  # Telling what jobs we need to happen
       - name: Build APK
         run: flutter build apk --release
 
-      #5.1 Compress APK
-      - name: Compress APK
-        run: zip -j build/app/outputs/flutter-apk/app-release.zipx build/app/outputs/flutter-apk/app-release.apk
-
+    
       #6 Upload APK
       - name: Upload APK 
         uses: actions/upload-artifact@v4
         with:
           name: app-release
           path: |
-            build/app/outputs/flutter-apk/app-release.zipx
+            build/app/outputs/flutter-apk/app-release.apk
 
       #7 Send Email
       - name: Send Email
@@ -59,8 +56,7 @@ jobs:  # Telling what jobs we need to happen
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: Build Completed
-          body: The build has been completed successfully. You can download the APK from the link below
-              ${{ github.server_url }}/${{ github.repository }}/suites/${{ github.run_id }}/artifacts/${{ steps.upload-apk.outputs.artifact_id }}
+          body: The build has been completed successfully. 
           to: foxahmed71@gmail.com
           from: ahmed.alsabonabi@gmail.com
           attachments: build/app/outputs/flutter-apk/app-release.zipx
