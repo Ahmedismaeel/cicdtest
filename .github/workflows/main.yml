@@ -45,3 +45,18 @@ jobs:  # Telling what jobs we need to happen
           name: app-release
           path: |
             build/app/outputs/flutter-apk/app-release.apk
+
+      #7 Send Email
+      - name: Send Email
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.solvenya.sd
+          server_port: 587
+          username: ${{ secrets.SMTP_USERNAME }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: Build Completed
+          body: The build has been completed successfully. You can download the APK from the link below:
+                ${{ github.server_url }}/${{ github.repository }}/suites/${{ github.run_id }}/artifacts/${{ steps.upload-apk.outputs.artifact_id }}
+          to: ahmed.alsabonabi@gmail.com
+          from: ahmed@solvenya.sd
+          attachments: build/app/outputs/flutter-apk/app-release.apk
