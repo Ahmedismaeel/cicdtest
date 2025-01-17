@@ -55,8 +55,8 @@ jobs:  # Telling what jobs we need to happen
           username: ${{ secrets.SMTP_USERNAME }}
           password: ${{ secrets.SMTP_PASSWORD }}
           subject: Build Completed
-          body: The build has been completed successfully. You can download the APK from the link below:
-                ${{ github.server_url }}/${{ github.repository }}/suites/${{ github.run_id }}/artifacts/${{ steps.upload-apk.outputs.artifact_id }}
+          body: The build has been completed successfully. You can download the APK from the link below
+              ${{ github.server_url }}/${{ github.repository }}/suites/${{ github.run_id }}/artifacts/${{ steps.upload-apk.outputs.artifact_id }}
           to: ahmed.alsabonabi@gmail.com
           from: ahmed@solvenya.sd
           attachments: build/app/outputs/flutter-apk/app-release.apk
