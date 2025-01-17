@@ -14,7 +14,7 @@ jobs:  # Telling what jobs we need to happen
     name: Build & Release  # you can name the build whatever you want
     runs-on: macos-latest # here we selected macos-latest to be able to get ios build
 
-  steps:
+    steps:
         #1 Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v3
