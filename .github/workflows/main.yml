@@ -1,8 +1,10 @@
 name: "Build & Release"
+
 on:
   push:
     branches:
-      - master
+      - main
+
 
 jobs:  # Telling what jobs we need to happen
   build:      # Specify the building name and machine
